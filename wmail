@@ -12,9 +12,9 @@ PHONENUMBER="+46xxxxxxx"
 
 from="$REALNAME <$MAILADDRESS>"
 email_text="$(head /dev/urandom|tr -dc A-Za-z0-9|head -c 2 ; echo ''-gmail.txt)"
-email_sent="/home/wuseman/.mail/sent"
-email_drafts="/home/wuseman/.mail/drafts/$email_text"
-email_canceled="/home/wuseman/.mail/canceled/$email_text"
+email_sent="~/.mail/sent"
+email_drafts="~/.mail/drafts/$email_text"
+email_canceled="~/.mail/canceled/$email_text"
 
 set -e
 set -o pipefail
@@ -22,14 +22,14 @@ shopt -s nullglob
 
 if [[ ! -d ~/.mail/sent ]]; then
    mkdir -p ~/.mail/sent
-   printf "\e[1;31mCreated /home/wuseman/.mail/sent since it first time you will send an email\n\e[0m"
+   printf "\e[1;31mCreated ~/.mail/sent since it first time you will send an email\n\e[0m"
    chmod -R 755 ~/.mail/sent
 
 fi
 
 if [[ ! -d ~/.mail/canceled ]]; then
    mkdir -p ~/.mail/canceled
-   printf "\e[1;31mCreated /home/wuseman/.mail/canceled since it first time you will send an email\n\e[0m"
+   printf "\e[1;31mCreated ~/.mail/canceled since it first time you will send an email\n\e[0m"
    chmod -R 755 ~/.mail/canceled
 
 fi
@@ -37,7 +37,7 @@ fi
 if [[ ! -d ~/.mail/drafts ]]; then
    mkdir -p ~/.mail/drafts
    chmod -R 755 ~/.mail
-   printf "\e[1;31mCreated /home/wuseman/.mail/drafts since it first time you will send an email\n\e[0m"
+   printf "\e[1;31mCreated ~/.mail/drafts since it first time you will send an email\n\e[0m"
    printf "\nJust execute wmail -s again and all is ready..\n\n"
 exit
 fi
